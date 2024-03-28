@@ -10,7 +10,7 @@ double TSP::GetScore(const std::vector<int>& order) const {
     double score = 0;
     for (int u = 0; u < (int)order.size(); u++) {
         int v = (u + 1) % (int)order.size();
-        score += Distance(nodes[u], nodes[v]);
+        score += Distance(nodes[order[u]], nodes[order[v]]);
     }
     return score;
 }

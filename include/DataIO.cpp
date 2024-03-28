@@ -21,16 +21,19 @@ std::vector<std::pair<double, double>> DataIO::ReadData() {
             assert(0);
         }
     } while (info != "NODE_COORD_SECTION");
-    do {
+    while (true) {
         if (!std::getline(in, info)) {
             std::cerr << "File format error" << std::endl;
             assert(0);
         }
         std::istringstream iss(info);
+        if (info == "EOF") {
+            break;
+        }
         int id;
         double x, y;
         iss >> id >> x >> y;
         task.emplace_back(x, y);
-    } while (info != "EOF");
+    }
     return task;
 }

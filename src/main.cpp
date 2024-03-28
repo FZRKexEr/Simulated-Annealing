@@ -10,8 +10,9 @@ int main() {
 
     std::vector<std::pair<double, double>> task = data.ReadData();
 
-    SA<TSP> solver(task, 10);
-    auto order = solver.run();
+    SA<TSP> solver(task);
+
+    auto order = solver.run(10, 2000000);
     TSP res(task);
 
     std::cout << "Final Score: " << res.GetScore(order) << std::endl;
